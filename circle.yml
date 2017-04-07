@@ -27,5 +27,5 @@ deployment:
   master:
     branch: master
     commands:
-      - bundle exec fastlane adhoc --verbose
+      - bundle exec fastlane ios test --verbose
       - bundle exec fastlane beta  --verbos
