@@ -1,0 +1,31 @@
+machine:
+  timezone: Asia/Tokyo
+  xcode:
+    version: '8.3'
+dependencies:
+  cache_directories:
+    - '~/advent'
+  override:
+    - mkdir -p ~/advent
+    - |
+      if [ -e ~/advent/build.log ]; then
+        cat ~/advent/build.log
+      fi
+    - echo "`date +'%Y-%m-%d %H:%M:%S'` branch=$CIRCLE_BRANCH build_number=$CIRCLE_BUILD_NUM" >> ~/advent/build.log
+    - |
+      if [ -e ~/advent/build.log ]; then
+        cat ~/advent/build.log
+      fi
+test:
+  override:
+    - echo CIRCLECI TEST!
+deployment:
+  except_master:
+    branch: /^((?!master).)*$/
+    commands:
+      - bundle exec fastlane adhoc --verbose
+  master:
+    branch: master
+    commands:
+      - bundle exec fastlane adhoc --verbose
+      - bundle exec fastlane beta  --verbos
