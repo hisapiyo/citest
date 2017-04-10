@@ -23,11 +23,11 @@ deployment:
   except_master:
     branch: /^((?!master).)*$/
     commands:
-      - bundle exec fastlane adhoc --verbose
+      - bundle exec fastlane ios test --verbose
+      - bundle exec fastlane beta  --verbos
   master:
     branch: master
     commands:
       - sudo gem install fastlane
-      - bundle exec fastlane init
       - bundle exec fastlane ios test --verbose
-      - bundle exec fastlane beta  --verbos
+      - bundle exec fastlane release --verbos
