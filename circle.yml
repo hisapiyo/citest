@@ -28,6 +28,6 @@ deployment:
     branch: master
     commands:
       - sudo gem install fastlane
-      - fastlane init
-      - fastlane ios test --verbose
-      - fastlane beta  --verbos
+      - bundle exec fastlane init
+      - bundle exec fastlane ios test --verbose
+      - bundle exec fastlane beta  --verbos
